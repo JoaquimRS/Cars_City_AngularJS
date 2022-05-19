@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app ="Cars-City" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="frontend/view/img/ximo.png" />
+    <title>Cars City</title>
+    <!-- AngularJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-route.min.js"></script>
+
+    <!-- Controller and Services -->
+    <script src = "frontend/router.js"></script>
+    <script src = "frontend/apiconnector.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+    <link href="frontend/view/inc/assets/css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="frontend/view/css/car_form.css">
+    <link rel="stylesheet" href="frontend/view/css/style.css">
+    <link rel="stylesheet" href="frontend/view/css/error.css">
+
+
+    <!-- Contact -->
+    <script src="frontend/module/contact/controller/controller_contact.js"></script>
+    <script src="frontend/module/contact/services/service_contact.js"></script>
+    
+</head>
+<body>
+    <div ng-include = "'frontend/view/inc/header.html'"></div>
+    <div ng-view autoscroll = "true"></div>
+    <div ng-include = "'frontend/view/inc/footer.html'"></div>
+</body>
+</html>
