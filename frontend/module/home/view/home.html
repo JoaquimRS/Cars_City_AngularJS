@@ -1,0 +1,83 @@
+<!-- Brands -->
+<section class="wrapper style1">
+	<div class="container">
+		<header class="major">
+			<h2>Marca</h2>
+		</header>
+		<div class="swiper" id="swiper">			
+			<div class="swiper-wrapper">
+				<div ng-repeat="brand in brands" class="box highlight swiper-slide">
+					<img src="frontend/view/img/brands/{{brand.url_img}}" class="img-marca zoom brand onClickHome"></img>
+					<h2>{{brand.nombre_marca}}</h2>
+				</div>
+			</div>
+			<div class="swiper-pagination"></div>
+		</div>
+</section>			
+<!-- Fuels -->
+<section class="wrapper style1">
+	<div class="container">
+		<header class="major">
+			<h2>Combustible</h2>
+		</header>
+		<div class="row" id="root-fuels">
+			<section ng-repeat="fuel in fuels" class="col-6 col-12-narrower">
+				<div class="box post">
+					<a class="image left zoom">
+						<img src="frontend/view/img/fuels/{{fuel.url_img}}" class="fuel onClickHome" id="{{fuel.nombre_combustible}}">
+					</a>
+					<div class="inner">
+						<h3>{{fuel.nombre_combustible}}</h3>
+						<p>
+							{{fuel.descripcion}}
+						</p>
+					</div>
+				</div>
+			</section>
+		</div>
+
+	</div>
+</section>
+<!-- Categories -->
+<section class="wrapper style1">
+	<div class="container">
+		<header class="major">
+			<h2>Categorias</h2>
+		</header>
+		<div class="row" id="root-types">
+			<section ng-repeat="category in categories" class="col-6 col-12-narrower">
+				<div class="box post">
+					<a class="image left zoom">
+						<img src="frontend/view/img/categories/{{category.url_img}}" class="fuel onClickHome" id="{{category.nombre_combustible}}">
+					</a>
+					<div class="inner">
+						<h3>{{category.nombre_categoria}}</h3>
+						<p>
+							{{category.descripcion}}
+						</p>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</section>
+
+<!-- Noticias -->
+<section class="wrapper style1">
+	<div class="container">
+		<header class="major">
+			<h2>Noticas</h2>
+		</header>
+		<div class="row" id="root-news">
+			<section ng-repeat="new in news" class="col-4 col-12-narrower">
+				<div class="box highlight zoom news" ng-click="redirect_new(new.url)" url="{{new.url}}">
+					<img src="{{new.image}}" class="newsImage">
+					<h3>{{new.title}}</h3>
+					<p>
+						{{new.content}}
+					</p>
+				</div>
+			</section>
+		</div>
+	</div>
+</section>
