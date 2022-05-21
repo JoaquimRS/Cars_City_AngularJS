@@ -6,8 +6,8 @@
 		</header>
 		<div class="swiper" id="swiper">			
 			<div class="swiper-wrapper">
-				<div ng-repeat="brand in brands" class="box highlight swiper-slide">
-					<img src="frontend/view/img/brands/{{brand.url_img}}" class="img-marca zoom brand onClickHome"></img>
+				<div ng-repeat="brand in brands" class="box highlight swiper-slide" >
+					<img src="frontend/view/img/brands/{{brand.url_img}}" ng-model="brands" ng-click="redirect_home_shop" class="img-marca zoom brand onClickHome"></img>
 					<h2>{{brand.nombre_marca}}</h2>
 				</div>
 			</div>
@@ -69,7 +69,7 @@
 			<h2>Noticas</h2>
 		</header>
 		<div class="row" id="root-news">
-			<section ng-repeat="new in news" class="col-4 col-12-narrower">
+			<!-- <section ng-repeat="new in news" class="col-4 col-12-narrower">
 				<div class="box highlight zoom news" ng-click="redirect_new(new.url)" url="{{new.url}}">
 					<img src="{{new.image}}" class="newsImage">
 					<h3>{{new.title}}</h3>
@@ -77,7 +77,7 @@
 						{{new.content}}
 					</p>
 				</div>
-			</section>
+			</section> -->
 		</div>
 	</div>
 </section>

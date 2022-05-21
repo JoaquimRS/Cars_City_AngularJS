@@ -40,7 +40,34 @@
 						</li>
 						
 					</ul>
-					<div id="Search" class="overlay-content">
+					<div id="Search" class="overlay-content" style="display: flex;">
+							<div id="brands">
+								<select class="brand" ng-change="change_search()" ng-model="brands" placeholder="Seleccionar Marca" ng-options="brand.nombre_marca as brand.nombre_marca for brand in search_brands">
+									<option value="">Todas las marcas</option>
+								</select>
+							</div>
+							<div id="categories">
+								<select class="category" ng-change="change_search()" ng-model="categories" placeholder="Seleccionar Categoria" ng-options="category.nombre_categoria as category.nombre_categoria for category in search_categories">
+									<option value="">Todas las categorias</option>
+								</select>
+							</div>
+							<div id="order">
+								<select class="order" ng-change="change_search()" ng-model="order">
+									<option value="">Sin Orden</option>
+									<option value="price">Precio</option>
+									<option value="kms">Kilometros</option>
+								</select>
+							</div>
+							<div id="cities">
+								<input type="text" list="list-cities" ng-change="change_search()" ng-model="cities" class="city" placeholder="Seleccionar Ciudad">
+								<datalist id="list-cities">
+									<option value="">Todas las ciudades</option>
+									<option ng-repeat="city in search_cities" value="{{city.ciudad}}">{{city.ciudad}}</option>
+								</datalist>
+							</div>
+							<div class="submit-img" ng-click="redirect_shop()">
+								<img src="frontend/view/img/submit.png">
+							</div>
 					</div>
 
 				</nav>
