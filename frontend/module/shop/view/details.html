@@ -1,0 +1,46 @@
+<section class="style1" id="details">
+    <img ng-click="return_shop()" src="frontend/view/img/return.png" class="return-shop">
+    <main class="container">
+        <div class="image-slider">
+            <div class="swiper" id="swiper" ng-if="details_car.carImages != ''">			
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" ng-repeat="carImg in details_car.carImages" >
+                        <img src="frontend/view/img/cars/{{carImg.url_img}}" ng-click="main_img(carImg.url_img)" class="click_img"></img>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="left-column">
+            <img src="frontend/view/img/cars/{{details_car.IMG}}" ng-if="details_car.IMG != ''" class="active img">
+            <img src="frontend/view/img/error_img.jpg" ng-if="details_car.IMG == ''" class="active img">
+        </div>
+        <div class="right-column">
+            <div class="product-description">
+                <h2>{{details_car.nombre_marca}} {{details_car.nombre_modelo}}</h2>
+                <table>
+                    <th>{{details_car.nombre_combustible}}</th>
+                    <th>{{details_car.cambio}}</th>
+                    <th>{{details_car.kms}} kms</th>
+                    <th>{{details_car.nombre_categoria}}</th>
+                </table>
+                <div id="map_details">
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+    <h2 class="centered">Relacionados</h2>
+    <div id="relatedCars">
+        <div ng-click="redirec_related(r_car.id_coche)" class="zoom car-related" ng-if="id_details != r_car.id_coche" ng-repeat="r_car in related_cars">
+            <img src="frontend/view/img/cars/{{r_car.IMG}}" ng-if="r_car.IMG != ''">
+            <img src="frontend/view/img/error_img.jpg" ng-if="r_car.IMG == ''" class="img">
+            <h3>{{r_car.nombre_marca}} {{r_car.nombre_modelo}}</h3>
+            <table>
+                <th>{{r_car.nombre_combustible}}</th>
+                <th>{{r_car.cambio}}</th>
+                <th>{{r_car.kms}} kms</th>
+                <th>{{r_car.nombre_categoria}}</th>
+            </table>
+        </div>
+    </div>
+</section>

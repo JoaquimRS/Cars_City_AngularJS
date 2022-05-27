@@ -32,7 +32,7 @@
 							</ul>
 						</li>
 						<li class="search" id="menu-search">
-							<div class="search-icon" data-silent-initial-value-set="true">
+							<div class="search-icon" ng-class="{'active':search_focus}"  ng-click="search_icon()" data-silent-initial-value-set="true">
 								<span class="search-line main-line"></span>
 								<span class="search-circle"></span>
 								<span class="search-line second-line"></span>
@@ -40,7 +40,7 @@
 						</li>
 						
 					</ul>
-					<div id="Search" class="overlay-content" style="display: flex;">
+					<div id="Search" class="overlay-content" ng-style="search_style">
 							<div id="brands">
 								<select class="brand" ng-change="change_search()" ng-model="brands" placeholder="Seleccionar Marca" ng-options="brand.nombre_marca as brand.nombre_marca for brand in search_brands">
 									<option value="">Todas las marcas</option>

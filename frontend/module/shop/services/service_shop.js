@@ -1,6 +1,7 @@
-app.factory("services_shop",["services","$rootScope",(services,$rootScope)=>{
+app.factory("services_shop",["services","$rootScope","services_gmaps","services_swiper",(services,$rootScope,services_gmaps,services_swiper)=>{
     let service = {
-        cars_pages:cars_pages
+        cars_pages:cars_pages,
+        car_info:car_info
     };
     return service;  
     
@@ -28,7 +29,7 @@ app.factory("services_shop",["services","$rootScope",(services,$rootScope)=>{
         }
         
 
-    }
+    };
     async function pagination_cars(cars, ppp,filters){
         np = Math.ceil(cars.length/ppp)
         var prods = []
@@ -49,74 +50,29 @@ app.factory("services_shop",["services","$rootScope",(services,$rootScope)=>{
         }
         $rootScope.shop_cars_pages = prods
         $rootScope.shop_cars = ((filters.page-1)>=prods.length) ? prods[prods.length-1] : prods[filters.page-1]
-        loadGmaps()
-        loadSwiper()
+        services_gmaps.loadGmaps()
+        services_swiper.loadSwiper()
         
     }
-    function loadSwiper() {
-        setTimeout(() => {
-            const swiper = new Swiper('.swiper', {
-                loop :  false,
-                slidesPerView :  1,
-                spaceBetween :  1,
-                pagination :  {
-                    el :  '.swiper-pagination',
-                    type :  'fraction',
-                    },
-                centeredSlides :  true,
-                navigation :  {
-                    nextEl :  '.swiper-button-next',
-                    prevEl :  '.swiper-button-prev',
-                  },
-            });
-        }, 500)
-    }
-    function loadGmaps() {
-        var centerPoint = { lat :  38.78317511958979, lng :  -0.7851077280611519 };
-        const map = new google.maps.Map(document.getElementById("map"), {
-            zoom :  8,
-            center :  centerPoint,
-            gestureHandling :  "auto",
-            zoomControl :  true,
-          });
-        $rootScope.shop_cars.forEach((car, i)=>{
-            const carPos = { lat :  parseFloat(car.lat), lng :  parseFloat(car.lng) };
-            const infowindow = new google.maps.InfoWindow({
-                content :  '<div id="root-gmaps">' +
-                            '<div class="swiper_gmaps">'+
-                                '<div class="swiper-wrapper">'+
-                                    '<div class="swiper-slide" ng-repeat="carImg in car.carImages">'+
-                                        '<img src="frontend/view/img/cars/'+car.IMG+'" class="gmaps_img"></img>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</div>'+
-                        '</div>'+
-                            '<div id="gmaps_content">' +
-                                '<b>'+car.nombre_marca + " " + car.nombre_modelo+'</b><br>'+
-                                '<span>Ciudad :  '+car.ciudad+'</span><br>'+
-                                '<span>Precio :  '+car.precio+'€</span><br>'
-    
-            });
-            
-            const marker = new google.maps.Marker({
-            position :  carPos,
-            map,
-            title :  car.nombre_marca + " " + car.nombre_modelo,
-            animation :  google.maps.Animation.DROP, //animacio per a cada marcador
-            });
-    
-            marker.addListener("click", () => {
-            if (infowindow.getMap()) {
-                infowindow.close();  
-            }
-            else {
-                infowindow.open({
-                    anchor :  marker,
-                    map,
-                    shouldFocus :  false,
-                    });
-                }
-            });
+    function car_info (idCar) {
+        services.get('shop','car',idCar)
+        .then((jsonCarInfo)=>{
+            $rootScope.details_car = jsonCarInfo
+            services_swiper.loadSwiperDetails()
+            services_gmaps.loadGmapsDetails()
+            related_cars()
+        },(error)=>{
+            console.log(error);
         })
-    }
+    };
+
+    function related_cars () {
+        services.post('shop','related_cars',$rootScope.details_car)
+        .then((jsonRelated)=>{
+            $rootScope.related_cars = jsonRelated
+        },(error)=>{
+            console.log(error);
+        })
+
+    };
 }]);

@@ -89,6 +89,11 @@ app.run(($rootScope, $location, $window, services, services_search)=>{
         var redirect = ($location.path()=="/shop") ? $window.location.reload() : $location.path("/shop")
 
     }
+    $rootScope.search_icon = function () {
+        $rootScope.search_focus = ($rootScope.search_focus) ? false : true;
+        $rootScope.search_style=($rootScope.search_focus) ? {'display': 'flex'} : {'display': 'none'};
+
+    }
     services_search.brands();
     services_search.categories();
     services_search.cities();

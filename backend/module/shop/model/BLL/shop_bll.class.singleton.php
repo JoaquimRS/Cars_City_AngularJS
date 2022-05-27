@@ -40,7 +40,9 @@
 			return $this -> dao -> select_related_cars($this->db,$carInfo);
 		}
 		public function car_BLL($idCar) {
-			return $this -> dao -> select_car($this->db,$idCar);
+			$car = $this -> dao -> select_car($this->db,$idCar);
+			$car->carImages = $this -> dao -> select_carImages($this->db,$idCar);	
+			return $car;
 		}
 		public function carImages_BLL($idCar) {
 			return $this -> dao -> select_carImages($this->db,$idCar);

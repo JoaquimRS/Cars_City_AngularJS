@@ -106,7 +106,7 @@
             ON t.id_categoria=c.id_categoria 
             WHERE id_coche='$idCar';";
             $stmt = $db->ejecutar($sql);
-            return $db->listar($stmt);
+            return $db->listar_unico($stmt);
         }
         public function select_carImages($db,$idCar) {
             $sql = "SELECT * FROM coches_img WHERE id_coche='$idCar';";

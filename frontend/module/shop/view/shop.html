@@ -8,9 +8,6 @@
                 <div class="filtersdiv">
                     <img src="frontend/view/img/filter-remove.png" class="removeFilters" ng-click="removeFilters()">
                     <b>Marca</b>
-                    <!-- <select class="onChangeFilters" ng-model="filter_brands" ng-change="filter_change()" ng-options="brand.nombre_marca for brand in shop_brands">
-                        <option class="brand" id="0" value=""></option>
-                    </select> -->
                     <select class="onChangeFilters" ng-model="filter_brands" ng-change="filter_change()">
                         <option class="brand" id="0" value=""></option>
                         <option class="brand" ng-repeat="brand in shop_brands">{{brand.nombre_marca}}</option>
@@ -47,7 +44,7 @@
                 <div class="shop_cars-container" id="shopCars" ng-repeat="car in shop_cars">
                     <div class="shop_car">
                         <div class="shop_car-preview">
-                            <div class="swiper" id="swiper">			
+                            <div class="swiper" id="swiper" ng-if="car.carImages != ''">			
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide" ng-repeat="carImg in car.carImages">
                                         <img src="frontend/view/img/cars/{{carImg.url_img}}" class="car_img"></img>
@@ -57,8 +54,9 @@
                                 <div class="swiper-button-prev hide-button-prev"></div>
                                 <div class="swiper-button-next hide-button-prev"></div>
                             </div>
+                            <img src="frontend/view/img/error_img.jpg" ng-if="car.carImages == ''" class="car_img">
                         </div>
-                        <div id="3" class="shop_car-info">
+                        <div ng-click="redirect_details(car.id_coche)" class="shop_car-info">
                             <h2>{{car.nombre_marca}} {{car.nombre_modelo}}</h2>
                             <h6>{{car.precio}}€</h6>
                             <table>

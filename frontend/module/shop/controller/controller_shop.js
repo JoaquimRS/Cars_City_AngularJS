@@ -1,4 +1,4 @@
-app.controller("controller_shop", ($rootScope,$scope,brands_models,fuels,categories,cities,all_cars,services_shop)=>{
+app.controller("controller_shop", ($scope,$location,brands_models,fuels,categories,cities,all_cars,services_shop)=>{
     var filters = (localStorage.getItem("filters")) ? JSON.parse(localStorage.getItem("filters")) : {brand :  "",model :  "",price :  "",fuel :  "",category :  "",city :  "",order :  "",page :  "1"};
     var ppp = 5
     services_shop.cars_pages(all_cars,ppp,filters)
@@ -51,4 +51,5 @@ app.controller("controller_shop", ($rootScope,$scope,brands_models,fuels,categor
         localStorage.setItem("filters",JSON.stringify(filters))
         services_shop.cars_pages(all_cars, ppp, filters)        
     }
+    $scope.redirect_details = (idCar)=>{$location.path("/details/"+idCar)}
 })
