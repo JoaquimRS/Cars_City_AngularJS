@@ -32,8 +32,8 @@ app.factory("services_search",["services","$rootScope",(services,$rootScope)=>{
     }
     function filter_cities(filters) {
         services.post('search','filter_cities',filters)
-        .then((jsonCities)=>{
-            $rootScope.search_cities = jsonCities;
+        .then((jsonFilterCities)=>{
+            $rootScope.search_cities = jsonFilterCities;
         }, (error)=>{
             console.log(error);
         })

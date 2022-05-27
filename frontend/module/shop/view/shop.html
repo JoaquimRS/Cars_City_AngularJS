@@ -1,0 +1,96 @@
+<section class="style1" id="shop">
+    <div id="list">
+        <div class="row gtr-200">
+            <div class="col-2" id="root-filters">
+                <div class="filters">
+                    <h2>Filtros</h2>
+                </div>
+                <div class="filtersdiv">
+                    <img src="frontend/view/img/filter-remove.png" class="removeFilters" ng-click="removeFilters()">
+                    <b>Marca</b>
+                    <!-- <select class="onChangeFilters" ng-model="filter_brands" ng-change="filter_change()" ng-options="brand.nombre_marca for brand in shop_brands">
+                        <option class="brand" id="0" value=""></option>
+                    </select> -->
+                    <select class="onChangeFilters" ng-model="filter_brands" ng-change="filter_change()">
+                        <option class="brand" id="0" value=""></option>
+                        <option class="brand" ng-repeat="brand in shop_brands">{{brand.nombre_marca}}</option>
+                    </select>
+                    <b>Modelo</b>
+                        <select class="onChangeFilters" ng-model="filter_models" ng-change="filter_change()">
+                            <option class="model" id="0"></option>
+                            <option class="model" ng-repeat="model in shop_models">{{model.nombre_modelo}}</option>
+                        </select>
+                    <b>Precio</b>
+                        <input type="number" class="onChangeFilters" ng-change="filter_change()" ng-model="filter_price" id="price">
+                    <b>Combustible</b>
+                        <select class="onChangeFilters" ng-change="filter_change()" ng-model="filter_fuels">
+                            <option class="fuel"></option>
+                            <option class="fuel" ng-repeat="fuel in shop_fuels">{{fuel.nombre_combustible}}</option>
+                        </select>
+                    <b>Categoria</b>
+                        <select class="onChangeFilters" ng-change="filter_change()" ng-model="filter_categories">
+                            <option class="category"></option>
+                            <option class="category" ng-repeat="category in shop_categories">{{category.nombre_categoria}}</option>
+                        </select>
+                    <b>Ciudad</b>
+                        <select class="onChangeFilters" ng-change="filter_change()" ng-model="filter_cities">
+                            <option class="city"></option>
+                            <option class="city" ng-repeat="city in shop_cities">{{city.ciudad}}</option>
+                        </select>
+                        <br>
+                </div>
+            </div>
+            <div class="col-6 col-12-narrower imp-narrower" id="root-cars">
+                <div id="content" class="filters">
+                    <h2>Nuestros coches</h2>
+                </div>
+                <div class="shop_cars-container" id="shopCars" ng-repeat="car in shop_cars">
+                    <div class="shop_car">
+                        <div class="shop_car-preview">
+                            <div class="swiper" id="swiper">			
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide" ng-repeat="carImg in car.carImages">
+                                        <img src="frontend/view/img/cars/{{carImg.url_img}}" class="car_img"></img>
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                                <div class="swiper-button-prev hide-button-prev"></div>
+                                <div class="swiper-button-next hide-button-prev"></div>
+                            </div>
+                        </div>
+                        <div id="3" class="shop_car-info">
+                            <h2>{{car.nombre_marca}} {{car.nombre_modelo}}</h2>
+                            <h6>{{car.precio}}€</h6>
+                            <table>
+                                <th>{{car.ciudad}}</th>
+                                <th>{{car.nombre_combustible}}</th>
+                                <th>{{car.nombre_categoria}}</th>
+                                <th>{{car.kms}} kms</th>
+                            </table>
+                        </div>
+                        <div class="like" id="like3"></div>
+                    </div>
+                </div>
+                <div class="pagination">
+                    <a class="numPag" ng-repeat="page in shop_cars_pages" ng-click="loadPage(shop_cars_pages.indexOf(page)+1)" id="{{shop_cars_pages.indexOf(page)+1}}">{{shop_cars_pages.indexOf(page)+1}}</a>
+                </div>
+            </div>
+            <div class="col-4" id="root-location">
+                <div class="sidebar2">
+                    <section>
+                        <h2>Localizacion</h2>
+                    </section>
+
+                </div>
+                <div class="fixed-map">
+                    <div id="map">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+</section>
+<section class="style1" id="details">
+
+</section>

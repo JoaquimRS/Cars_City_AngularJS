@@ -1,4 +1,4 @@
-app.factory("services", ['$http','$q', function ($http, $q) {
+app.factory("services", ['$http','$q', ($http, $q)=> {
     let serviceBase = '/tema7_ximo/backend/index.php?module=';
     
     let obj = {};
@@ -17,12 +17,13 @@ app.factory("services", ['$http','$q', function ($http, $q) {
           return promise;
         };
 
-        obj.get = function (module, functi) {
+        obj.get = function (module, functi, param=null) {
             var defered = $q.defer();
             var promise = defered.promise;
+            var url = (param)?serviceBase + module + '&op=' + functi + '&param=' + param:serviceBase + module + '&op=' + functi
             $http({
                   method: 'GET',
-                  url: serviceBase + module + '&op=' + functi
+                  url: url
               }).success(function(data, status, headers, config) {
                  defered.resolve(data);
               }).error(function(data, status, headers, config) {

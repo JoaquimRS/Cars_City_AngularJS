@@ -12,6 +12,7 @@
     <script src = "frontend/router.js"></script>
     <script src = "frontend/apiconnector.js"></script>
     <script src = "frontend/view/js/menu.js"></script>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
     
 
     <!-- CSS -->
@@ -25,6 +26,9 @@
     <!-- <link rel="stylesheet" href="frontend/view/css/details.css"> -->
     <!-- <link rel="stylesheet" href="frontend/view/css/login.css"> -->
 
+    <!-- CSS / Route -->
+    <script src="frontend/view/js/route-style.js"></script>
+    <link rel="stylesheet" ng-repeat="style in css" ng-href="{{ style }}">
 
     <!-- Contact -->
     <script src="frontend/module/contact/controller/controller_contact.js"></script>
@@ -32,10 +36,16 @@
 
     <!-- Home -->
     <script src="frontend/module/home/controller/controller_home.js"></script>
-    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    
 
     <!-- Search -->
     <script src="frontend/module/search/services/service_search.js"></script>
+
+    <!-- Shop -->
+    <script src="frontend/module/shop/controller/controller_shop.js"></script>
+    <script src="frontend/module/shop/controller/controller_details.js"></script>
+    <script src="frontend/module/shop/services/service_shop.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV58mu2pm4WgDALp91XnIighQ0E3KfSJM"></script>
 
 </head>
 <body>
