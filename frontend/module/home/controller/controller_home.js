@@ -1,11 +1,22 @@
-// app.controller("controller_home", ($scope, brands, fuels, categories)=>{
-app.controller("controller_home", ($scope, brands, fuels, categories,news)=>{
+// app.controller("controller_home", ($scope, $location, brands, fuels, categories)=>{
+app.controller("controller_home", ($location, $scope, brands, fuels, categories,news)=>{
     $scope.brands = brands
     $scope.fuels = fuels
     $scope.categories = categories
     $scope.news = news.articles
-    $scope.redirect_home_shop = function(){
-        console.log("Hola");
+    $scope.redirect_home_shop = function(info){
+        var filters = {
+            brand: (info.brand!=null) ? info.brand : "",
+            model: "",
+            price: "",
+            fuel: (info.fuel!=null) ? info.fuel : "",
+            category: (info.category!=null) ? info.category : "",
+            city: "",
+            order: "",
+            page: "1"
+        };
+        localStorage.setItem("filters",JSON.stringify(filters))
+        $location.path("/shop")
     }
     
     setTimeout(() => {
@@ -26,5 +37,6 @@ app.controller("controller_home", ($scope, brands, fuels, categories,news)=>{
     $scope.redirect_new = (url)=>{
         window.open(url, '_blank')
     }
+
 })
 

@@ -11,13 +11,9 @@
 				<nav id="nav">
 					
 					<ul>
-						<li class="menu-click" ng-class="{'current':c_menu==home}" id="menu-home"><a id="logo" href="#/home" data-tr="Home">Home</a></li>
-						<li class="menu-click" ng-class="c_menu" id="menu-shop"><a href="#/shop" data-tr="Shop">Shop</a></li>
-						
-						<!-- <li class="menu-click" id="menu-left-sidebar" ><a href="#">Left Sidebar</a></li>
-						<li class="menu-click" id="menu-right-sidebar"><a href="#">Right Sidebar</a></li> -->
-						<li class="menu-click" ng-class="{'current':c_menu==contact}" id="menu-contact"><a href="#/contact" data-tr="Contact">Contact</a></li>
-						<!-- <li class="menu-click" id="menu-no-sidebar"><a href="#">No Sidebar</a></li> -->
+						<li class="menu-click" ng-class="{'current':c_menu=='/home'}" ng-click="c_menu='/home'" id="menu-home"><a id="logo" href="#/home" data-tr="Home">Home</a></li>
+						<li class="menu-click" ng-class="{'current':c_menu=='/shop'}" ng-click="c_menu='/shop'" id="menu-shop"><a href="#/shop" data-tr="Shop">Shop</a></li>
+						<li class="menu-click" ng-class="{'current':c_menu=='/contact'}" ng-click="c_menu='/contact'" id="menu-contact"><a href="#/contact" data-tr="Contact">Contact</a></li>
 						<li class="settings">
 							<a><img src="frontend/view/inc/images/settings.png"></a>
 							<ul>
@@ -69,7 +65,19 @@
 								<img src="frontend/view/img/submit.png">
 							</div>
 					</div>
-
+					<div id="login_button" class="login_button root-dropdown">
+						<div class="login_div" ng-if="login_status==false" ng-click="redirect_login()">
+							<a>
+								<img src="frontend/view/inc/images/user_icon.png" alt="">
+							</a>
+						</div>
+						<div class="dropdown" ng-if="login_status">
+							<img src="frontend/view/img/error_img.jpg" alt="">
+							<div class="dropdown-content">
+								<a>logout</a>
+							</div>
+						</div>
+					</div>
 				</nav>
 				
 				<div id="simple_modal">

@@ -7,7 +7,7 @@
 		<div class="swiper" id="swiper">			
 			<div class="swiper-wrapper">
 				<div ng-repeat="brand in brands" class="box highlight swiper-slide" >
-					<img src="frontend/view/img/brands/{{brand.url_img}}" ng-model="brands" ng-click="redirect_home_shop" class="img-marca zoom brand onClickHome"></img>
+					<img src="frontend/view/img/brands/{{brand.url_img}}" ng-model="brands" ng-click="redirect_home_shop({'brand':brand.nombre_marca})" class="img-marca zoom brand onClickHome"></img>
 					<h2>{{brand.nombre_marca}}</h2>
 				</div>
 			</div>
@@ -24,7 +24,7 @@
 			<section ng-repeat="fuel in fuels" class="col-6 col-12-narrower">
 				<div class="box post">
 					<a class="image left zoom">
-						<img src="frontend/view/img/fuels/{{fuel.url_img}}" class="fuel onClickHome" id="{{fuel.nombre_combustible}}">
+						<img src="frontend/view/img/fuels/{{fuel.url_img}}" ng-click="redirect_home_shop({'fuel':fuel.nombre_combustible})" class="fuel onClickHome" id="{{fuel.nombre_combustible}}">
 					</a>
 					<div class="inner">
 						<h3>{{fuel.nombre_combustible}}</h3>
@@ -48,7 +48,7 @@
 			<section ng-repeat="category in categories" class="col-6 col-12-narrower">
 				<div class="box post">
 					<a class="image left zoom">
-						<img src="frontend/view/img/categories/{{category.url_img}}" class="fuel onClickHome" id="{{category.nombre_combustible}}">
+						<img src="frontend/view/img/categories/{{category.url_img}}" ng-click="redirect_home_shop({'category':category.nombre_categoria})" class="fuel onClickHome" id="{{category.nombre_combustible}}">
 					</a>
 					<div class="inner">
 						<h3>{{category.nombre_categoria}}</h3>

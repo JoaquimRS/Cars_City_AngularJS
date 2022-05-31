@@ -1,0 +1,75 @@
+<br>
+<br>
+    <div class="cont" ng-class="{'s--signup':form_status}">
+        <div class="form login_p sign-in">
+            <h2>Bienvenido</h2>
+                <label>
+                    <span class="error">{{error_login}}</span>                
+                </label>
+                <label>                
+                    <input type="text" id="log_username" ng-model="log_username" class="input login" placeholder="Usuario" autocomplete="off"/>
+                    <span class="error">{{error_log_username}}</span>
+                </label>
+                <label>        
+                    <div class="input_password">
+                        <img id="password_image" show="false">
+                        <input type="password" id="log_password" ng-model="log_password" class="input login" placeholder="Contraseña" autocomplete="off"/>
+                    </div>        
+                    <span class="error">{{error_log_password}}</span>
+                </label>
+                <p id="forgot-pass" class="forgot-pass">¿Has olvidado tu contraseña?</p>
+                <button type="button" id="login" ng-click="submit_login()" class="submit">Iniciar Sesion</button>
+                <div id="social_login" class="social_login"> 
+                    <div class="white-line"></div>
+                    <i id="github" class="fa-brands fa-github fa-3x rrss_img zoom"></i>
+                    <i id="google" class="fa-brands fa-google fa-3x rrss_img zoom"></i>
+                </div>
+        </div>
+        <div class="sub-cont">
+            <div class="img">
+                <div class="img__text m--up">
+                 
+                    <h3>¿Todavía no tienes cuenta?</h3>
+                    <h3>¡Registrate!</h3>
+                </div>
+                <div class="img__text m--in">
+                
+                    <h3>Si ya tienes cuenta, inicia sesión.<h3>
+                </div>
+                <div class="img__btn" ng-click="change_form()">
+                    <span class="m--up">Registrarse</span>
+                    <span class="m--in">Iniciar Sesion</span>
+                </div>
+            </div>
+            <div class="form sign-up">
+                <h2>Crea tu cuenta</h2>
+                <label>
+                    <span class="error">{{error_reg}}</span>
+                </label>
+                <label>                    
+                    <input type="text" ng-model="reg_username" class="input register" placeholder="Usuario" autocomplete="off"/>
+                    <span class="error">{{error_reg_username}}</span>
+                </label>
+                <label>                    
+                    <input type="email" ng-model="reg_email" class="input register" placeholder="Correo" autocomplete="off"/>
+                    <span class="error">{{error_reg_email}}</span>
+                </label>
+                <label>  
+                    <div class="input_password">
+                        <img id="password_image" show="false">
+                        <input type="password" ng-model="reg_password" class="input register" placeholder="Contraseña" autocomplete="off"/>
+                    </div>                    
+                    <span class="error">{{error_reg_password}}</span>
+                </label>
+                <label>
+                    <div class="input_password">
+                        <img id="password_image" show="false">
+                        <input type="password" ng-model="reg_password_2" class="input register" placeholder="Repetir contraseña" autocomplete="off"/>
+                    </div>                     
+                    <span class="error">{{error_reg_password_2}}</span>
+                </label>
+                <button type="button" id="register" ng-click="submit_register()" class="submit">Registrarse</button>
+                
+            </div>
+        </div>
+    </div>

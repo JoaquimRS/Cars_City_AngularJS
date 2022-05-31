@@ -1,4 +1,4 @@
-var app = angular.module('Cars-City', ['ngRoute','routeStyles']);
+var app = angular.module('Cars-City', ['ngRoute','routeStyles','toastr']);
 
 app.config(['$routeProvider', ($routeProvider)=>{
     $routeProvider
@@ -49,6 +49,16 @@ app.config(['$routeProvider', ($routeProvider)=>{
             css: ["frontend/view/css/shop.css","frontend/view/css/details.css"],
             controller: "controller_details"
         })
+        .when("/login",{
+            templateUrl: "frontend/module/login/view/login.html",
+            css: ["frontend/view/css/login.css"],
+            controller: "controller_login"
+        })
+        .when("/verify/:token",{
+            templateUrl: "frontend/module/login/view/verify.html",
+            css: ["frontend/view/css/login.css"],
+            controller: "controller_verify"
+        })
         .when("/contact", {
             templateUrl: "frontend/module/contact/view/contact.html", 
             controller: "controller_contact"
@@ -61,6 +71,12 @@ app.config(['$routeProvider', ($routeProvider)=>{
         });
 }]);
 app.run(($rootScope, $location, $window, services, services_search)=>{
+    $rootScope.c_menu = $location.path()
+    $rootScope.login_status = (localStorage.getItem("token")) ? true : false
+    $rootScope.redirect_login = ()=> {
+        localStorage.setItem("ll",$location.path())
+        $location.path("/login")
+    }
     var filters = {
         brand: "",
         model: "",
@@ -94,6 +110,7 @@ app.run(($rootScope, $location, $window, services, services_search)=>{
         $rootScope.search_style=($rootScope.search_focus) ? {'display': 'flex'} : {'display': 'none'};
 
     }
+
     services_search.brands();
     services_search.categories();
     services_search.cities();
