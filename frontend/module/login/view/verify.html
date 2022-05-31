@@ -3,8 +3,8 @@
 <div id="root_form">
     <div class="cont_verify">
         <div id="root_verify" class="verify">
-            <h2>Email Verificado</h2>
-            <button type="button" id="verify" class="submit">Iniciar Sesion</button>
+            <h2 ng-class="{'error-title':verify_status}">{{verify_title}}</h2>
+            <button type="button" ng-click="verify_login()" class="submit">{{verify_button}}</button>
         </div>
     </div>
 </div>

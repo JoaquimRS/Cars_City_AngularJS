@@ -61,7 +61,7 @@
                     $message = ['type' => 'verify',  
                                 'user' => $infoUser->user,
                                 'email' => $infoUser->email,
-                                'url' => SITE_PATH."login/verify/".$token];
+                                'url' => "http://ximo.com/tema7_ximo/#/verify/".$token];
                     $email = json_decode(mail::send_email($message), true);
                     return array('code'=>'110','msg'=>'Se ha enviado un correo de verificacion');
                 }
