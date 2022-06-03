@@ -61,7 +61,7 @@
                     $message = ['type' => 'verify',  
                                 'user' => $infoUser->user,
                                 'email' => $infoUser->email,
-                                'url' => "http://ximo.com/tema7_ximo/#/verify/".$token];
+                                'url' => $infoRegister["url"] . $token ];
                     $email = json_decode(mail::send_email($message), true);
                     return array('code'=>'110','msg'=>'Se ha enviado un correo de verificacion');
                 }
@@ -170,6 +170,9 @@
             if (!isset($user_info)){
                 exit;
             }
+            if ($user_info->verificado==1){
+                exit;
+            }
             if ($infoRecover->rec_password==$infoRecover->rec_password_2){
                 $password_hash = password_hash($infoRecover->rec_password,PASSWORD_DEFAULT);
                 return $this -> dao -> recover_password($this->db,$user_info->id,$password_hash);
@@ -177,14 +180,14 @@
         }
         function recover_email_BLL($userEmail) {
             $token = common::generate_token_secure(20);
-            $user_info = $this -> dao -> select_user_email($this->db,$userEmail,"cars-city");
+            $user_info = $this -> dao -> select_user_email($this->db,$userEmail["email"],"cars-city");
             $user_status = $this -> dao -> change_user_status($this->db,$user_info->id,$token);
             if(!isset($user_info)){
                 exit;
             }
             $message = ['type' => 'recover',  
                                 'user' => $user_info->usuario,
-                                'url' => SITE_PATH."login/recover/".$token];
+                                'url' => $userEmail["url"] . $token];
             $email = json_decode(mail::send_email($message), true);
             return array('code'=>'110','msg'=>'Se ha enviado un correo de recuperacion');
         }

@@ -4,6 +4,5 @@ app.controller("controller_verify", ($location,services_verify,$routeParams, $sc
     $scope.verify_login = ()=>{
         $location.path("/login")
     }
-
-
+    
 })

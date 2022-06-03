@@ -19,4 +19,7 @@ app.controller("controller_login", ($location, $scope,services_login)=>{
         }
         services_login.submit_register(forminfo)
     }
+    $scope.recover_password = () => {
+        $location.path("/ask_email")
+    }
 })

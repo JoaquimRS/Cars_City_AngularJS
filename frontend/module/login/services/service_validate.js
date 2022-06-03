@@ -1,7 +1,9 @@
 app.factory("services_validate",["services","$rootScope","toastr",(services,$rootScope,toastr)=>{
     let service = {
         validate_login:validate_login,
-        validate_register:validate_register
+        validate_register:validate_register,
+        validate_ask_email:validate_ask_email,
+        validate_recover:validate_recover
     }
     return service;
 
@@ -30,11 +32,15 @@ app.factory("services_validate",["services","$rootScope","toastr",(services,$roo
     };
     
     function validateEmailReg(email) {
-        if (email.length > 0){
-            var reg =  /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-            return reg.test(email);
+        try {
+            if (email.length > 0){
+                var reg =  /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+                return reg.test(email);
+            }
+            return false;
+        } catch (error) {
+            return false;
         }
-        return false;
     };
     
     function validatePasswordReg(password) {
@@ -122,5 +128,43 @@ app.factory("services_validate",["services","$rootScope","toastr",(services,$roo
         }
         return check;
     };
+
+    function validate_ask_email(email) {
+        var check = true 
+        var check_email = validateEmailReg(email)
+        if (!check_email) {
+            str = "Email incorrecto"
+            toastr.error(str)
+            check=false
+            $rootScope.error_rec_email = str
+        } else {
+            $rootScope.error_rec_email = ""
+        }
+        return check;
+    }
+
+    function validate_recover(recoverinfo) {
+        var check = true
+        var password = validatePasswordReg(recoverinfo.rec_password)
+        var password2 = validatePassword2Reg(recoverinfo.rec_password,recoverinfo.rec_password_2)
+        if (!password) {
+            str = "Contraseña incorrecta"
+            toastr.error(str);
+            check=false
+            $rootScope.error_rec_password = str
+        } else {
+            $rootScope.error_rec_password = ""
+        }
+        if (!password2) {
+            str = "Las contraseñas no coinciden"
+            toastr.error(str);
+            check=false
+            $rootScope.error_rec_password_2 = str
+        } else {
+            $rootScope.error_rec_password_2 = ""
+        }
+        
+        return check
+    }
     
 }]);

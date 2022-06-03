@@ -47,7 +47,7 @@
             return $this -> bll -> recover_password_BLL(json_decode(json_encode($infoRecover)));
         }
         public function recover_email_model($email) {
-            return $this -> bll -> recover_email_BLL(json_decode(json_encode($email))->email);
+            return $this -> bll -> recover_email_BLL($email);
         }
         
 

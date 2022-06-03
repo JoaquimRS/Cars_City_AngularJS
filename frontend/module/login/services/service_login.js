@@ -29,8 +29,7 @@ app.factory("services_login",["services","$location","$rootScope","services_vali
 
     }
     function submit_register(forminfo) {
-        console.log(services_validate.validate_register(forminfo));
-        
+        forminfo.url = "http://ximo.com/tema7_ximo/#/verify/"
         if(services_validate.validate_register(forminfo)){
             services.post('login','submit_register',forminfo)
             .then((json)=>{

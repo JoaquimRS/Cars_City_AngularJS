@@ -59,10 +59,21 @@ app.config(['$routeProvider', ($routeProvider)=>{
             css: ["frontend/view/css/login.css"],
             controller: "controller_verify"
         })
+        .when("/ask_email",{
+            templateUrl: "frontend/module/login/view/ask_email.html",
+            css: ["frontend/view/css/login.css"],
+            controller: "controller_recover"
+        })
+        .when("/recover/:token",{
+            templateUrl: "frontend/module/login/view/recover.html",
+            css: ["frontend/view/css/login.css"],
+            controller: "controller_recover"
+        })
         .when("/contact", {
             templateUrl: "frontend/module/contact/view/contact.html", 
             controller: "controller_contact"
-        }).when("/error",{
+        })
+        .when("/error",{
             templateUrl: "frontend/view/inc/error404.html",
             css: ['frontend/view/css/error.css']
         })

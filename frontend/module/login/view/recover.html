@@ -1,0 +1,27 @@
+<br>
+<br>
+<div id="root_form">
+    <div class="cont_recover">
+        <div id="root_recover" class="recover_div">
+            <h2>Cambiar contraseña</h2>
+            <label>
+                <span class="error">{{error_rec}}</span>
+            </label>
+            <label>  
+                <div class="input_password">
+                    <img id="password_image" class="img_recover" show="false">
+                    <input type="password" ng-model="rec_password" class="input recover" ng-keypress="$event.keyCode === 13 && submit_passwords()" placeholder="Contraseña" autocomplete="off"/>
+                </div>                    
+                <span class="error">{{error_rec_password}}</span>
+            </label>
+            <label>
+                <div class="input_password">
+                    <img id="password_image" show="false">
+                    <input type="password" ng-model="rec_password_2" id="rec_password_2" ng-keypress="$event.keyCode === 13 && submit_passwords()" class="input recover" placeholder="Repetir contraseña" autocomplete="off"/>
+                </div>                     
+                <span class="error">{{error_rec_password_2}}</span>
+            </label>
+            <button type="button" id="recover" ng-click="submit_passwords()" class="submit">Aplicar cambios</button>
+        </div>
+    </div>
+</div>
