@@ -72,9 +72,9 @@
 							</a>
 						</div>
 						<div class="dropdown" ng-if="login_status">
-							<img src="frontend/view/img/error_img.jpg" alt="">
+							<img src="{{url_user_image}}" alt="">
 							<div class="dropdown-content">
-								<a>logout</a>
+								<a ng-click="logout()">logout</a>
 							</div>
 						</div>
 					</div>

@@ -1,4 +1,4 @@
-app.factory("services_login",["services","$location","$rootScope","services_validate","services_localStorage","toastr",(services,$location,$rootScope,services_validate,services_localStorage,toastr)=>{
+app.factory("services_login",["services","$location","$rootScope","services_validate","services_localStorage","services_middleware","toastr",(services,$location,$rootScope,services_validate,services_localStorage,services_middleware,toastr)=>{
     let service = {
         submit_login:submit_login,
         submit_register:submit_register
@@ -13,14 +13,14 @@ app.factory("services_login",["services","$location","$rootScope","services_vali
     function submit_login(forminfo) {
         if(services_validate.validate_login(forminfo)){
             services.post('login','submit_login',forminfo)
-            .then((json)=>{
+            .then((jsonLogin)=>{
                 var check=true
-
-                json.error ? ($rootScope.error_login=json.error, check=false, toastr.error(json.error)) : ""
                 
-                json.msg ? (toastr.info(json.msg),check=false) : ""
-
-                check ? (services_localStorage.setToken(json),loadLastLocation()) : ""
+                jsonLogin.error ? ($rootScope.error_login=jsonLogin.error, check=false, toastr.error(jsonLogin.error)) : ""
+                
+                jsonLogin.msg ? (toastr.info(jsonLogin.msg),check=false) : ""
+                
+                check ? (services_localStorage.setToken(jsonLogin),loadLastLocation(),services_middleware.decode()) : ""
             
             },(error)=>{
                 console.log(error);

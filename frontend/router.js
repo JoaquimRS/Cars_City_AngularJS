@@ -81,29 +81,21 @@ app.config(['$routeProvider', ($routeProvider)=>{
             redirectTo: "/home"
         });
 }]);
-app.run(($rootScope, $location, $window, services, services_search)=>{
+app.run(($rootScope, $location, $window, services, services_search, services_middleware)=>{
+    //SERVICES LOCALSTORAGE UPDATE APP RUN
+    services_search.brands();
+    services_search.categories();
+    services_search.cities();
     $rootScope.c_menu = $location.path()
-    $rootScope.login_status = (localStorage.getItem("token")) ? true : false
+    localStorage.getItem("token") ? services_middleware.decode() : $rootScope.login_status = false
+    $rootScope.logout = ()=>{services_middleware.logout()}
     $rootScope.redirect_login = ()=> {
         localStorage.setItem("ll",$location.path())
         $location.path("/login")
     }
-    var filters = {
-        brand: "",
-        model: "",
-        price: "",
-        fuel: "",
-        category: "",
-        city: "",
-        order: "",
-        page: "1"
-
-    };
-    if (localStorage.getItem("filters")){
-        // no filters
-    } else {
-        localStorage.setItem("filters",JSON.stringify(filters))
-    }
+    var filters = {brand: "",model: "",price: "",fuel: "",category: "",city: "",order: "",page: "1"};
+    localStorage.getItem("filters") ? "No filters" : localStorage.setItem("filters",JSON.stringify(filters))
+    
     $rootScope.change_search = function(){
         filters.brand = (this.brands!=null)?this.brands:""
         filters.category = (this.categories!=null)?this.categories:""
@@ -116,13 +108,11 @@ app.run(($rootScope, $location, $window, services, services_search)=>{
         var redirect = ($location.path()=="/shop") ? $window.location.reload() : $location.path("/shop")
 
     }
-    $rootScope.search_icon = function () {
+    $rootScope.search_icon = ()=> {
         $rootScope.search_focus = ($rootScope.search_focus) ? false : true;
         $rootScope.search_style=($rootScope.search_focus) ? {'display': 'flex'} : {'display': 'none'};
-
     }
+    
+    
 
-    services_search.brands();
-    services_search.categories();
-    services_search.cities();
 });
