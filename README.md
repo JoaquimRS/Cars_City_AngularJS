@@ -1,4 +1,4 @@
-# Cars_City_FRAMEWORK_PHP_OO_MVC_jQuery
+# Cars_City_FRAMEWORK_PHP_OO_MVC_AngularJS
 
 _Website of second hand cars that allows you to login, register, sign up, see all the cars, filter them and add to favorites_
 
@@ -24,14 +24,14 @@ _Website of second hand cars that allows you to login, register, sign up, see al
 ## BUILT WITH
 
 * [PHP] - Backend
-* [JQuery] - Frontend
+* [AngularJS] - Frontend
 * [JS] - Frontend
 
 
 [PHP]: <http://php.net/>
 [MVC]: <https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller>
 [OOP]: <https://en.wikipedia.org/wiki/Object-oriented_programming>
-[jQuery]: <http://jquery.com>
+[AngularJS]: <https://angularjs.org/>
 [js]: <https://es.wikipedia.org/wiki/JavaScript>
 [JWT]: <https://jwt.io/>
 [MailGun]: <https://www.mailgun.com/es/>
