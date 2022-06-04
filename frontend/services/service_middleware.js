@@ -8,12 +8,11 @@ app.factory("services_middleware",["$window","$location","services","$rootScope"
         var token = services_localStorage.getToken()
         services.post('login','data_user',{token:token})
         .then((userinfo)=>{
-            if (userinfo == false) {
+            if (userinfo == "false") {
                 $rootScope.login_status = false
             } else {
                 $rootScope.url_user_image = userinfo.avatar
                 $rootScope.login_status = true
-                
             }
 
         }, (error)=>{

@@ -1,7 +1,9 @@
-app.controller("controller_shop", ($scope,$location,brands_models,fuels,categories,cities,all_cars,services_shop)=>{
+app.controller("controller_shop", ($scope,$location,brands_models,fuels,categories,cities,all_cars,services_shop,$parse)=>{
     var filters = (localStorage.getItem("filters")) ? JSON.parse(localStorage.getItem("filters")) : {brand :  "",model :  "",price :  "",fuel :  "",category :  "",city :  "",order :  "",page :  "1"};
     var ppp = 5
     services_shop.cars_pages(all_cars,ppp,filters)
+
+    localStorage.getItem("token") ? services_shop.user_likes() : "No token"
     $scope.shop_brands = brands_models[0]
     $scope.shop_models = brands_models[1]
     $scope.shop_fuels = fuels
@@ -52,4 +54,10 @@ app.controller("controller_shop", ($scope,$location,brands_models,fuels,categori
         services_shop.cars_pages(all_cars, ppp, filters)        
     }
     $scope.redirect_details = (idCar)=>{$location.path("/details/"+idCar)}
+
+    $scope.clickLike = function (idCar){
+        $parse("like_focus_"+idCar)($scope) ? $parse("like_focus_"+idCar).assign($scope, false) : $parse("like_focus_"+idCar).assign($scope, true)
+        localStorage.getItem("token") ? services_shop.mod_user_like(idCar) : $location.path("/login")
+       
+    }
 })

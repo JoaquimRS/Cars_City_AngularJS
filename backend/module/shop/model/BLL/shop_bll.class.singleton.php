@@ -58,18 +58,18 @@
 			return $this -> dao -> increment_views($this->db,$idCar);
 		}
 		public function user_likes_BLL($token) {
-			// $user = middleware_auth::decode($token)->id;
-			// if ($user==false){
-            //     return false;
-            // }
-			// return $this -> dao -> select_user_likes($this->db,$user);
+			$user = middleware_auth::decode($token)->id;
+			if ($user==false){
+                return false;
+            }
+			return $this -> dao -> select_user_likes($this->db,$user);
 		}
 		function mod_user_like_BLL($token,$idCar) {
-            // $user = middleware_auth::decode($token)->id;
-            // if ($user==false){
-            //     return false;
-            // }
-            // return $this -> dao -> mod_user_like($this->db,$user,$idCar);
+            $user = middleware_auth::decode($token)->id;
+            if ($user==false){
+                return false;
+            }
+            return $this -> dao -> mod_user_like($this->db,$user,$idCar);
         }
 		
 		

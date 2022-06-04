@@ -1,7 +1,9 @@
-app.factory("services_shop",["services","$rootScope","services_gmaps","services_swiper",(services,$rootScope,services_gmaps,services_swiper)=>{
+app.factory("services_shop",["services","$rootScope","services_gmaps","services_swiper","services_localStorage","$parse",(services,$rootScope,services_gmaps,services_swiper,services_localStorage,$parse)=>{
     let service = {
         cars_pages:cars_pages,
-        car_info:car_info
+        car_info:car_info,
+        mod_user_like:mod_user_like,
+        user_likes:user_likes
     };
     return service;  
     
@@ -73,6 +75,32 @@ app.factory("services_shop",["services","$rootScope","services_gmaps","services_
         },(error)=>{
             console.log(error);
         })
+    };
 
+    function user_likes() {
+        var token = {token:services_localStorage.getToken()}
+        var model
+        services.post('shop','user_likes',token)
+        .then((jsonUserLikes)=>{
+            jsonUserLikes.forEach(Like => {
+                model = $parse("like_focus_"+Like.id_coche)
+                model.assign($rootScope, true)
+            });
+        },(error)=>{
+            console.log(error);
+        })
+    };
+
+    function mod_user_like(idCar) {
+        var likeinfo = {
+            idCar:idCar,
+            token:services_localStorage.getToken()
+        }
+        services.post('shop','mod_user_like',likeinfo)
+        .then((jsonUserLike)=>{
+            
+        },(error)=>{
+            console.log(error);
+        })
     };
 }]);
