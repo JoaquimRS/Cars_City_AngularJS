@@ -1,5 +1,4 @@
-// app.controller("controller_home", ($scope, $location, brands, fuels, categories)=>{
-app.controller("controller_home", ($location, $scope, brands, fuels, categories,news)=>{
+app.controller("controller_home", ($location, $scope, brands, fuels, categories,news, services_localStorage)=>{
     $scope.brands = brands
     $scope.fuels = fuels
     $scope.categories = categories
@@ -15,7 +14,7 @@ app.controller("controller_home", ($location, $scope, brands, fuels, categories,
             order: "",
             page: "1"
         };
-        localStorage.setItem("filters",JSON.stringify(filters))
+        services_localStorage.setFilters(filters)
         $location.path("/shop")
     }
     

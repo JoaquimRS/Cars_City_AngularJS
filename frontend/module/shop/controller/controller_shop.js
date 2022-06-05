@@ -1,9 +1,9 @@
-app.controller("controller_shop", ($scope,$location,toastr,brands_models,fuels,categories,cities,all_cars,services_shop,$parse)=>{
-    var filters = (localStorage.getItem("filters")) ? JSON.parse(localStorage.getItem("filters")) : {brand :  "",model :  "",price :  "",fuel :  "",category :  "",city :  "",order :  "",page :  "1"};
+app.controller("controller_shop", ($scope,$location,toastr,brands_models,fuels,categories,cities,all_cars,services_shop,services_localStorage,$parse)=>{
+    var filters = (services_localStorage.getFilters()) ? services_localStorage.getFilters() : {brand :  "",model :  "",price :  "",fuel :  "",category :  "",city :  "",order :  "",page :  "1"};
     var ppp = 5
     services_shop.cars_pages(all_cars,ppp,filters)
 
-    localStorage.getItem("token") ? services_shop.user_likes() : "No token"
+    services_localStorage.getToken() ? services_shop.user_likes() : "No token"
     $scope.shop_brands = brands_models[0]
     $scope.shop_models = brands_models[1]
     $scope.shop_fuels = fuels
@@ -33,14 +33,14 @@ app.controller("controller_shop", ($scope,$location,toastr,brands_models,fuels,c
         filters.city = ""
         filters.order = ""
         filters.page = "1"
-        localStorage.setItem("filters",JSON.stringify(filters))
+        services_localStorage.setFilters(filters)
         services_shop.cars_pages(all_cars, ppp, filters)
 
     }
 
     $scope.loadPage = function (page){
         filters.page = page
-        localStorage.setItem("filters",JSON.stringify(filters))
+        services_localStorage.setFilters(filters)
         services_shop.cars_pages(all_cars, ppp, filters)
     }
     $scope.filter_change = async function (){
@@ -50,7 +50,7 @@ app.controller("controller_shop", ($scope,$location,toastr,brands_models,fuels,c
         filters.fuel = (this.filter_fuels) ? this.filter_fuels : ""
         filters.category = (this.filter_categories) ? this.filter_categories : ""
         filters.city = (this.filter_cities) ? this.filter_cities : ""
-        localStorage.setItem("filters",JSON.stringify(filters))
+        services_localStorage.setFilters(filters)
         services_shop.cars_pages(all_cars, ppp, filters)        
     }
     $scope.redirect_details = (idCar)=>{$location.path("/details/"+idCar)}
@@ -58,7 +58,7 @@ app.controller("controller_shop", ($scope,$location,toastr,brands_models,fuels,c
     $scope.clickLike = function (){
         var idCar = this.car.id_coche
         $parse("like_focus_"+idCar)($scope) ? $parse("like_focus_"+idCar).assign($scope, false) : $parse("like_focus_"+idCar).assign($scope, true)
-        localStorage.getItem("token") ? services_shop.mod_user_like(idCar) : ($location.path("/login"),toastr.info("Debes iniciar sesión"))
+        services_localStorage.getToken() ? services_shop.mod_user_like(idCar) : ($location.path("/login"),toastr.info("Debes iniciar sesión"))
        
     }
 })

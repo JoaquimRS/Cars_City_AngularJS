@@ -1,15 +1,17 @@
-app.factory("services_localStorage",["services","$rootScope",(services,$rootScope)=>{
+app.factory("services_localStorage",["services","$rootScope","$location",(services,$rootScope,$location)=>{
     let service = {
         setToken:setToken,
         getToken:getToken,
         deleteToken:deleteToken,
         setSocialUser:setSocialUser,
         getSocialuser:getSocialuser,
+        deleteSocialuser:deleteSocialuser,
         getAccessToken:getAccessToken,
-        getLastLocation:getLastLocation,
         deleteAccessToken:deleteAccessToken,
-        deleteSocialuser:deleteSocialuser
-
+        setLastLocation:setLastLocation,
+        getLastLocation:getLastLocation,
+        setFilters:setFilters,
+        getFilters:getFilters,
 
     }
     return service
@@ -18,7 +20,7 @@ app.factory("services_localStorage",["services","$rootScope",(services,$rootScop
     }
 
     function getToken() {  
-        return JSON.parse(localStorage.getItem("token"))
+        return localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : false
     }
 
     function deleteToken() {
@@ -45,7 +47,20 @@ app.factory("services_localStorage",["services","$rootScope",(services,$rootScop
         return localStorage.removeItem("access_token")
     }
 
+    function setLastLocation() {
+        localStorage.setItem("ll",$location.path())
+    }
+
     function getLastLocation() {  
         return localStorage.getItem("ll");
     }
+
+    function setFilters(filters) {
+        localStorage.setItem("filters",JSON.stringify(filters))
+    }
+
+    function getFilters() {
+        return JSON.parse(localStorage.getItem("filters"))
+    }
+    
 }]);

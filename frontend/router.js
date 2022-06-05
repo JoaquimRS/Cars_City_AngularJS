@@ -81,20 +81,21 @@ app.config(['$routeProvider', ($routeProvider)=>{
             redirectTo: "/home"
         });
 }]);
-app.run(($rootScope, $location, $window, services, services_search, services_middleware)=>{
+app.run(($rootScope, $location, $window, services_localStorage, services_search, services_middleware, services_modal)=>{
     //SERVICES LOCALSTORAGE UPDATE APP RUN
+    services_modal.show({title:"Usuario inactivo",desc:"Vuelve a iniciar sesión"})
     services_search.brands();
     services_search.categories();
     services_search.cities();
     $rootScope.c_menu = $location.path()
-    localStorage.getItem("token") ? services_middleware.decode() : $rootScope.login_status = false
+    services_localStorage.getToken() ? services_middleware.decode() : $rootScope.login_status = false
     $rootScope.logout = ()=>{services_middleware.logout()}
     $rootScope.redirect_login = ()=> {
-        localStorage.setItem("ll",$location.path())
+        services_localStorage.setLastLocation()
         $location.path("/login")
     }
     var filters = {brand: "",model: "",price: "",fuel: "",category: "",city: "",order: "",page: "1"};
-    localStorage.getItem("filters") ? "No filters" : localStorage.setItem("filters",JSON.stringify(filters))
+    services_localStorage.getFilters() ? "No filters" : services_localStorage.setFilters(filters)
     
     $rootScope.change_search = function(){
         filters.brand = (this.brands!=null)?this.brands:""
@@ -104,7 +105,7 @@ app.run(($rootScope, $location, $window, services, services_search, services_mid
         services_search.filter_cities(filters);
     }
     $rootScope.redirect_shop = ()=>{
-        localStorage.setItem("filters",JSON.stringify(filters))
+        services_localStorage.setFilters(filters)
         var redirect = ($location.path()=="/shop") ? $window.location.reload() : $location.path("/shop")
 
     }
