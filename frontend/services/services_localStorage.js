@@ -3,7 +3,12 @@ app.factory("services_localStorage",["services","$rootScope",(services,$rootScop
         setToken:setToken,
         getToken:getToken,
         deleteToken:deleteToken,
-        getLastLocation:getLastLocation
+        setSocialUser:setSocialUser,
+        getSocialuser:getSocialuser,
+        getAccessToken:getAccessToken,
+        getLastLocation:getLastLocation,
+        deleteAccessToken:deleteAccessToken,
+        deleteSocialuser:deleteSocialuser
 
 
     }
@@ -18,6 +23,26 @@ app.factory("services_localStorage",["services","$rootScope",(services,$rootScop
 
     function deleteToken() {
         localStorage.removeItem("token")
+    }
+
+    function setSocialUser(provider) {
+        localStorage.setItem("SocialUser",JSON.stringify(provider))
+    }
+
+    function getSocialuser() {
+        return JSON.parse(localStorage.getItem("SocialUser"))
+    }
+
+    function deleteSocialuser() {
+        return localStorage.removeItem("SocialUser")
+    }
+
+    function getAccessToken() {
+        return localStorage.getItem("access_token")
+    }
+
+    function deleteAccessToken() {
+        return localStorage.removeItem("access_token")
     }
 
     function getLastLocation() {  

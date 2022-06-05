@@ -9,6 +9,9 @@
         function sign_in() {
             echo json_encode(common::load_model('login_model','sign_in_model',$_POST));
         }
+        function auth0_credentials() {
+            echo json_encode(common::load_model('login_model','auth0_credentials_model'));
+        }
         function data_user() {
             echo json_encode(common::load_model('login_model','data_user_model',$_POST["token"]));
         }

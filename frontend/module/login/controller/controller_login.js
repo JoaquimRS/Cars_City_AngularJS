@@ -1,4 +1,4 @@
-app.controller("controller_login", ($location, $scope,services_login)=>{
+app.controller("controller_login", ($location,$scope,services_login,services_social_login)=>{
     $scope.change_form = ()=>{
         $scope.form_status = ($scope.form_status) ? false : true
     }
@@ -22,4 +22,15 @@ app.controller("controller_login", ($location, $scope,services_login)=>{
     $scope.recover_password = () => {
         $location.path("/ask_email")
     }
+
+    services_social_login.handleAuthentication()
+
+    $scope.log_google = ()=>{
+        services_social_login.google()
+    }
+    
+    $scope.log_github = ()=>{
+        services_social_login.github()
+    }
+
 })

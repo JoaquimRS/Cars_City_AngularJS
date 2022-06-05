@@ -82,13 +82,16 @@
             } else {
                 $new_user = $this -> dao -> register_social_user($this->db,$infoUser);
                 if ($new_user){
-                    $token = middleware_auth::encode($res_user->id);
-                    $_SESSION['id'] = $res_user->id;
+                    $token = middleware_auth::encode($new_user->id);
+                    $_SESSION['id'] = $new_user->id;
                     $_SESSION['time'] = time();
                     return $token;
                 }
             }
             return array('error'=>'Algo ha ido mal al crear el token','src'=>'error_login');
+        }
+        public function auth0_credentials_BLL() {
+            return auth0::getCredentials();
         }
         public function data_user_BLL($token){
             $user = middleware_auth::decode($token)->id;

@@ -79,12 +79,10 @@ app.factory("services_shop",["services","$rootScope","services_gmaps","services_
 
     function user_likes() {
         var token = {token:services_localStorage.getToken()}
-        var model
         services.post('shop','user_likes',token)
         .then((jsonUserLikes)=>{
             jsonUserLikes.forEach(Like => {
-                model = $parse("like_focus_"+Like.id_coche)
-                model.assign($rootScope, true)
+                $parse("like_focus_"+Like.id_coche).assign($rootScope, true)
             });
         },(error)=>{
             console.log(error);

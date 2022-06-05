@@ -22,6 +22,9 @@
         public function sign_in_model($infoUser) {
             return $this -> bll -> sign_in_BLL(json_decode(json_encode($infoUser)));
         }
+        public function auth0_credentials_model() {
+            return $this -> bll -> auth0_credentials_BLL();
+        }
         public function data_user_model($token) {
             return $this -> bll -> data_user_BLL($token);
         }

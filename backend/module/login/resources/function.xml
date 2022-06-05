@@ -13,6 +13,10 @@
         <uri>sign_in</uri>
     </function>
     <function>
+        <name>auth0_credentials</name>
+        <uri>auth0_credentials</uri>
+    </function>
+    <function>
         <name>data_user</name>
         <uri>data_user</uri>
     </function>

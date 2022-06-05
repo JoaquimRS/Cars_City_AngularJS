@@ -1,4 +1,4 @@
-app.controller("controller_shop", ($scope,$location,brands_models,fuels,categories,cities,all_cars,services_shop,$parse)=>{
+app.controller("controller_shop", ($scope,$location,toastr,brands_models,fuels,categories,cities,all_cars,services_shop,$parse)=>{
     var filters = (localStorage.getItem("filters")) ? JSON.parse(localStorage.getItem("filters")) : {brand :  "",model :  "",price :  "",fuel :  "",category :  "",city :  "",order :  "",page :  "1"};
     var ppp = 5
     services_shop.cars_pages(all_cars,ppp,filters)
@@ -55,9 +55,10 @@ app.controller("controller_shop", ($scope,$location,brands_models,fuels,categori
     }
     $scope.redirect_details = (idCar)=>{$location.path("/details/"+idCar)}
 
-    $scope.clickLike = function (idCar){
+    $scope.clickLike = function (){
+        var idCar = this.car.id_coche
         $parse("like_focus_"+idCar)($scope) ? $parse("like_focus_"+idCar).assign($scope, false) : $parse("like_focus_"+idCar).assign($scope, true)
-        localStorage.getItem("token") ? services_shop.mod_user_like(idCar) : $location.path("/login")
+        localStorage.getItem("token") ? services_shop.mod_user_like(idCar) : ($location.path("/login"),toastr.info("Debes iniciar sesión"))
        
     }
 })

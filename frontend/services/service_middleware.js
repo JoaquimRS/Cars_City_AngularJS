@@ -10,6 +10,7 @@ app.factory("services_middleware",["$window","$location","services","$rootScope"
         .then((userinfo)=>{
             if (userinfo == "false") {
                 $rootScope.login_status = false
+                console.log("false");
             } else {
                 $rootScope.url_user_image = userinfo.avatar
                 $rootScope.login_status = true

@@ -33,9 +33,11 @@
             return $stmt;
         }
         public function register_social_user($db,$infoUser) {
-            $sql = "INSERT INTO usuarios(uuid,usuario,email,tipo,avatar,verificado) VALUES('$infoUser->uuid','$infoUser->user','$infoUser->email','client','$infoUser->avatar',1);";
+            $insert = "INSERT INTO usuarios(uuid,usuario,email,tipo,avatar,verificado) VALUES('$infoUser->uuid','$infoUser->user','$infoUser->email','client','$infoUser->avatar',1);";
+            $sql = "SELECT * FROM usuarios WHERE uuid = '$infoUser->uuid';";
+            $db->ejecutar($insert);
             $stmt = $db->ejecutar($sql);
-            return $stmt;
+            return $db->listar_unico($stmt);
         }
         public function check_user($db,$token) {
             $sql = "SELECT id,verificado FROM usuarios WHERE token='$token'";
