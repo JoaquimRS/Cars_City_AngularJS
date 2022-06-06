@@ -14,6 +14,7 @@ app.factory("services_modal",["services","services_localStorage","$rootScope","$
     }
 
     function login() {
+        services_localStorage.setLastLocation()
         $rootScope.modal_state = false
         services_middleware.logout()
     }

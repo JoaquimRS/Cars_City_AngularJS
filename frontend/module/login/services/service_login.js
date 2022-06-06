@@ -1,4 +1,4 @@
-app.factory("services_login",["services","$location","$rootScope","services_validate","services_localStorage","services_middleware","toastr",(services,$location,$rootScope,services_validate,services_localStorage,services_middleware,toastr)=>{
+app.factory("services_login",["services","$location","$rootScope","services_validate","services_localStorage","services_middleware","toastr","services_activity",(services,$location,$rootScope,services_validate,services_localStorage,services_middleware,toastr, services_activity)=>{
     let service = {
         submit_login:submit_login,
         submit_register:submit_register,
@@ -21,7 +21,7 @@ app.factory("services_login",["services","$location","$rootScope","services_vali
                 
                 jsonLogin.msg ? (toastr.info(jsonLogin.msg),check=false) : ""
                 
-                check ? (services_localStorage.setToken(jsonLogin),loadLastLocation(),services_middleware.decode()) : ""
+                check ? (services_localStorage.setToken(jsonLogin),loadLastLocation(),services_middleware.decode(),services_activity.activity()) : ""
             
             },(error)=>{
                 console.log(error);
@@ -77,7 +77,7 @@ app.factory("services_login",["services","$location","$rootScope","services_vali
                 
             jsonSignIn.msg ? (toastr.info(jsonSignIn.msg),check=false) : ""
                 
-            check ? (services_localStorage.setToken(jsonSignIn),loadLastLocation(),services_middleware.decode()) : ""         
+            check ? (services_localStorage.setToken(jsonSignIn),loadLastLocation(),services_middleware.decode(),services_activity.activity()) : ""         
             
         },(error)=>{
             console.log(error);

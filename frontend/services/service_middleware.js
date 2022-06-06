@@ -13,6 +13,7 @@ app.factory("services_middleware",["$window","$location","services","$rootScope"
             } else {
                 $rootScope.url_user_image = userinfo.avatar
                 $rootScope.login_status = true
+
             }
         }, (error)=>{
             console.log(error);
@@ -20,6 +21,7 @@ app.factory("services_middleware",["$window","$location","services","$rootScope"
     };
     function logout() {  
         services_localStorage.deleteToken()
+        services_localStorage.setLastLocation()
         $location.path("/login")
         $rootScope.login_status = false
     };

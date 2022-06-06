@@ -81,14 +81,13 @@ app.config(['$routeProvider', ($routeProvider)=>{
             redirectTo: "/home"
         });
 }]);
-app.run(($rootScope, $location, $window, services_localStorage, services_search, services_middleware, services_modal)=>{
-    //SERVICES LOCALSTORAGE UPDATE APP RUN
-    services_modal.show({title:"Usuario inactivo",desc:"Vuelve a iniciar sesión"})
+app.run(($rootScope, $location, $window, services_localStorage, services_search, services_middleware, services_activity, services_modal)=>{
+    $rootScope.refresh_activity = ()=>{ services_localStorage.getToken() ? services_activity.refresh_activity() : ""};
     services_search.brands();
     services_search.categories();
     services_search.cities();
     $rootScope.c_menu = $location.path()
-    services_localStorage.getToken() ? services_middleware.decode() : $rootScope.login_status = false
+    services_localStorage.getToken() ? (services_middleware.decode(),services_activity.activity()) : $rootScope.login_status = false
     $rootScope.logout = ()=>{services_middleware.logout()}
     $rootScope.redirect_login = ()=> {
         services_localStorage.setLastLocation()
