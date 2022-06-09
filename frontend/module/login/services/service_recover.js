@@ -9,10 +9,16 @@ app.factory("services_recover",["services","$rootScope","toastr","services_valid
             var url = "http://ximo.com/tema7_ximo/#/recover/"
             services.post('login','recover_email',{["email"]:email,["url"]:url})
             .then((json)=>{
-                if(json.msg != "") {
-                    toastr.success(json.msg);
-                    $location.path("/login")
-                    $rootScope.error_rec_email = ""
+                if (json != "null") {
+                    if(json.msg != "") {
+                        toastr.success(json.msg);
+                        $location.path("/login")
+                        $rootScope.error_rec_email = ""
+                    } else {
+                        msg = "Correo no se ha podido enviar"
+                        toastr.error(msg);
+                        $rootScope.error_rec_email = msg
+                    }
                 } else {
                     msg = "Correo no se ha podido enviar"
                     toastr.error(msg);

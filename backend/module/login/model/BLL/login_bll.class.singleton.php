@@ -186,7 +186,7 @@
             $user_info = $this -> dao -> select_user_email($this->db,$userEmail["email"],"cars-city");
             $user_status = $this -> dao -> change_user_status($this->db,$user_info->id,$token);
             if(!isset($user_info)){
-                exit;
+                return;
             }
             $message = ['type' => 'recover',  
                                 'user' => $user_info->usuario,

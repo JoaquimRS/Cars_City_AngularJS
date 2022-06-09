@@ -8,7 +8,7 @@
 						'inputMessage' => $_POST['message']];
 			$email = json_decode(mail::send_email($message), true);
 			if (!empty($email)) {
-				echo json_encode('Done!');
+				echo json_encode($email);
 				return;
 			} 
 			echo json_encode('Error!');

@@ -28,6 +28,7 @@ app.factory("services_activity",["$interval","$location","services","$rootScope"
                     console.log(error);
                 });
             } else {
+                services_modal.show({title:"Error usuario",desc:"Por favor vuelva a iniciar sesión"})
                 $interval.cancel(promise)
             }
         }, 1 * 10 * 1000);
@@ -61,7 +62,7 @@ app.factory("services_activity",["$interval","$location","services","$rootScope"
                 $interval.cancel(checkToken)
             }
             
-          }, 1   * 60 * 1000);
+          }, 1   * 60 * 1000);//10 segons
     };
     function activity() {
         check_activity()

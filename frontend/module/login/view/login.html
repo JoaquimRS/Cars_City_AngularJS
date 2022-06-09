@@ -12,8 +12,9 @@
                 </label>
                 <label>        
                     <div class="input_password">
-                        <img id="password_image" show="false">
-                        <input type="password" id="log_password" ng-model="log_password" class="input login" placeholder="Contraseña" autocomplete="off"/>
+                        <img ng-if="password_image == '0'" src="frontend/view/img/login/hide_password.png" ng-click="change_password_image(1)">
+                        <img ng-if="password_image == '1'" src="frontend/view/img/login/show_password.png" ng-click="change_password_image(0)">
+                        <input type="{{typeInput}}" id="log_password" ng-model="log_password" class="input login" placeholder="Contraseña" autocomplete="off"/>
                     </div>        
                     <span class="error">{{error_log_password}}</span>
                 </label>
@@ -56,15 +57,17 @@
                 </label>
                 <label>  
                     <div class="input_password">
-                        <img id="password_image" show="false">
-                        <input type="password" ng-model="reg_password" class="input register" placeholder="Contraseña" autocomplete="off"/>
+                        <img ng-if="password_image == '0'" src="frontend/view/img/login/hide_password.png" ng-click="change_password_image(1)">
+                        <img ng-if="password_image == '1'" src="frontend/view/img/login/show_password.png" ng-click="change_password_image(0)">
+                        <input type="{{typeInput}}" ng-model="reg_password" class="input register" placeholder="Contraseña" autocomplete="off"/>
                     </div>                    
                     <span class="error">{{error_reg_password}}</span>
                 </label>
                 <label>
                     <div class="input_password">
-                        <img id="password_image" show="false">
-                        <input type="password" ng-model="reg_password_2" class="input register" placeholder="Repetir contraseña" autocomplete="off"/>
+                        <img ng-if="password_image == '0'" src="frontend/view/img/login/hide_password.png" ng-click="change_password_image(1)">
+                        <img ng-if="password_image == '1'" src="frontend/view/img/login/show_password.png" ng-click="change_password_image(0)">
+                        <input type="{{typeInput}}" ng-model="reg_password_2" class="input register" placeholder="Repetir contraseña" autocomplete="off"/>
                     </div>                     
                     <span class="error">{{error_reg_password_2}}</span>
                 </label>

@@ -24,8 +24,8 @@ app.factory("services_gmaps",["$rootScope",($rootScope)=>{
                                 '</div>'+
                             '</div>'+
                         '</div>'+
-                            '<div id="gmaps_content" onclick="http://ximo.com/tema7_ximo/#/details/'+ car.id_coche + ' ">' +
-                                '<b>'+car.nombre_marca + " " + car.nombre_modelo+'</b><br>'+
+                            '<div id="gmaps_content">' +
+                                '<a href="http://ximo.com/tema7_ximo/#/details/'+ car.id_coche + '">'+car.nombre_marca + " " + car.nombre_modelo+'</a><br>'+
                                 '<span>Ciudad :  '+car.ciudad+'</span><br>'+
                                 '<span>Precio :  '+car.precio+'€</span><br>'
     

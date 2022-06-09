@@ -1,6 +1,6 @@
 app.controller("controller_shop", ($scope,$location,toastr,brands_models,fuels,categories,cities,all_cars,services_shop,services_localStorage,$parse)=>{
     var filters = (services_localStorage.getFilters()) ? services_localStorage.getFilters() : {brand :  "",model :  "",price :  "",fuel :  "",category :  "",city :  "",order :  "",page :  "1"};
-    var ppp = 5
+    var ppp = 5 //3
     services_shop.cars_pages(all_cars,ppp,filters)
 
     services_localStorage.getToken() ? services_shop.user_likes() : "No token"

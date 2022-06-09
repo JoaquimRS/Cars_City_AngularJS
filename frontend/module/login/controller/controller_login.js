@@ -1,4 +1,6 @@
 app.controller("controller_login", ($location,$scope,services_login,services_social_login)=>{
+    $scope.password_image = 0;
+    $scope.typeInput = 'password'
     $scope.change_form = ()=>{
         $scope.form_status = ($scope.form_status) ? false : true
     }
@@ -31,6 +33,11 @@ app.controller("controller_login", ($location,$scope,services_login,services_soc
     
     $scope.log_github = ()=>{
         services_social_login.github()
+    }
+
+    $scope.change_password_image = (state)=>{
+        $scope.password_image = state;
+        $scope.typeInput = state!='0' ? 'text' : 'password'
     }
 
 })
